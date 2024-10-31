@@ -12,6 +12,9 @@ func NotFoundError(message string) *InternalError {
 	}
 }
 
-func NewINternalServerError() {
-	
+func NewINternalServerError(message string) *InternalError {
+	return &InternalError{
+		Message: message,
+		Err:     "internal_server_error",
+	}
 }
