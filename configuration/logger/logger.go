@@ -33,8 +33,10 @@ func Info(message string, tags ...zap.Field) {
 	log.Sync()
 }
 
-func Error(message string, tags ...zap.Field) {
-	tags = append(tags, zap.NamedError("error", err))
+func Error(message string, err error, tags ...zap.Field) {
+	if err != nil {
+		tags = append(tags, zap.NamedError("error", err))
+	}
 	log.Error(message, tags...)
 	log.Sync()
 }
